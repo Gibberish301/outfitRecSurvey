@@ -1,5 +1,5 @@
 from time import sleep
-from os import system
+from os import system, name
 
 choices = {
     'TShirtShorts': 0,
@@ -58,20 +58,32 @@ def recommendedItem():
         pLine('A top with shorts')
     else:
         pLine('A dress and cardgian')
+
+def clear():
+    # Clear screen
+    if name == 'nt':
+        # for windows
+        system('cls')
+    else:
+        # for mac and linux
+        system('clear')
     
 # Survey
 
 # Beginning
+clear()
+
 pLine('Welcome to the outfit prediction survey!')
 pLine('You will be asked 5 questions and')
 pLine('then be asked to choose between the')
 pLine('options. Type in your answer, and at')
-pLine('the end a reccomendation on what')
+pLine('the end a recomendation on what')
 pLine('outfit you should wear will be given.')
 sleep(0.1)
 
-start = input('Input anything to start: ')
-system('clear')
+start = input('Press Enter to start: ')
+
+clear()
 
 # Questions
 
@@ -162,13 +174,17 @@ sleep(0.5)
 recommendedItem()
 
 recommendedRight = input('Was this the recommendation you wanted?: ')
+print()
 
-if recommendedRight.lower() == 'no':
+if not recommendedRight.lower() == 'yes':
     pLine('The five choices were:')
     pLine(f'{choices.keys()}')
     
     wanted = input('Which one would you have wanted?: ')
 
+print()
 pLine('Thank you for your time!')
 print()
+pLine('These were your results:')
 print(choices)
+print()
